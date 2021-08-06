@@ -21,11 +21,7 @@ function resizeGrid(cols, rows) {
     var cellHeight = 1 / rows * 100;
     console.log("cellHeight: " + String(cellHeight));
 
-    // // Clear grid completely
-    // while (grid.lastChild) {
-    //   grid.removeChild(grid.lastChild);
-    // }
-
+   
     // Insert row divs
     for (var r = 0; r < rows; r++) {
         var thisRow = document.createElement("div");
@@ -36,12 +32,14 @@ function resizeGrid(cols, rows) {
         // Insert cell divs
         for (var c = 0; c < cols; c++) {
             var thisCell = document.createElement("div");
+            
             thisCell.classList.add("cell");
             thisCell.id = "r" + String(r) + "-c" + String(c)
+            console.log(thisCell.id = "r" + String(r) + "-c" + String(c))
             thisCell.style.width = String(cellWidth) + "%";
             thisCell.style.height = "100%";
             thisCell.onclick = function() { this.classList.toggle("alive"); };
-            //thisCell.onclick = function() { getNewStatus(this.id); };
+            // thisCell.onclick = function() { getNewStatus(this.id); };
             thisRow.appendChild(thisCell);
 
 
@@ -54,6 +52,7 @@ function resizeGrid(cols, rows) {
     // checkerGrid();
     randomValues()
 }
+
 
 
 // Global variables for tracking continuous evolution
@@ -203,40 +202,6 @@ function getCellId(coordList) {
 function getCell(cellId) {
     return document.getElementById(cellId);
 }
-
-// // Set all cells to dead
-// function clearGrid() {
-//     stopEvolving();
-//     var allCells = document.getElementsByClassName("cell");
-//     for (var i = 0; i < allCells.length; i++) {
-//         allCells[i].classList.remove("alive");
-//     }
-// }
-
-// // Set all cells to alive
-// function fillGrid() {
-//     stopEvolving();
-//     var allCells = document.getElementsByClassName("cell");
-//     for (var i = 0; i < allCells.length; i++) {
-//         allCells[i].classList.add("alive");
-//     }
-// }
-
-// // Set alternating alive-dead-alive pattern
-// function checkerGrid() {
-//     stopEvolving();
-//     var allCells = document.getElementsByClassName("cell");
-//     for (var i = 0; i < allCells.length; i++) {
-//         var thisCell = allCells[i];
-//         var coords = parseCellId(thisCell.id);
-//         var r = coords[0], c = coords[1];
-//         if (r % 2 === 0 && c % 2 === 0 || r % 2 === 1 && c %2 === 1) {
-//             thisCell.classList.add("alive");
-//         } else {
-//             thisCell.classList.remove("alive");
-//         }
-//     }
-// }
 
 // Set cells to dead/alive at random
 function randomValues() {
